@@ -1,9 +1,9 @@
 ![GNU GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 # E-Commerce
 
-[Demo URL 1 ](https://github.com/SanjeevKumar-DEV/E-Commerce) 
+[Demo URL 1 ](https://drive.google.com/file/d/1Fi345KGQK-Ep_qhLUxNEqPim4cREhC34/view) 
 
-[Demo URL 2 ](https://github.com/SanjeevKumar-DEV/E-Commerce) 
+[Demo URL 2 ](https://drive.google.com/file/d/1kyb21g35obds6lDhqSZL8oN5v4QwhGdp/view) 
 
 [Repository URL ](https://github.com/SanjeevKumar-DEV/E-Commerce)
 
