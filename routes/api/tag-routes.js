@@ -67,7 +67,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   // update a tag's name by its `id` value
   // {
-  //   "tag_name": "blue Changed"
+  //   "tag_name": "blue Changed",
+  //   "productIds": [1,2,3,4,5]    
   // }
   Tag.update(req.body, {
     where: {
@@ -126,18 +127,23 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   // delete on tag by its `id` value
   try {
-    const tagData = await Tag.destroy({
+    const tagDataToDelete = await Tag.findByPk(req.params.id, {
+      include: [{ model: Product, through: ProductTag }],
+    });
+    const tagDeleted = tagDataToDelete.get({ plain: true });
+    // res.status(200).json(tag);
+    const tagDeleteData = await Tag.destroy({
       where: {
         id: req.params.id,
       },
     });
 
-    if (!tagData) {
+    if (!tagDeleteData) {
       res.status(404).json({ message: "No tag found with this id!" });
       return;
     }
 
-    res.status(200).json(tagData);
+    res.status(200).json({message: "Deleted Tag Data", tagDeleted});
   } catch (err) {
     res.status(500).json(err);
   }

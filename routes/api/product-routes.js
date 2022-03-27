@@ -140,6 +140,11 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
   try {
+    const productToBeDeletedData = await Product.findByPk(req.params.id, {
+      include: [{ model: Category }, { model: Tag, through: ProductTag }],
+    });
+
+    const deletedProduct = productToBeDeletedData.get({ plain: true });
     const productData = await Product.destroy({
       where: {
         id: req.params.id,
@@ -151,7 +156,7 @@ router.delete("/:id", async (req, res) => {
       return;
     }
 
-    res.status(200).json(productData);
+    res.status(200).json({message: "Deleted Product Data", deletedProduct});
   } catch (err) {
     res.status(500).json(err);
   }
